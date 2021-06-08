@@ -11,7 +11,7 @@ var bombNum = [];
 var userNum = [];
 
 while (bombNum.length < 16) {
-    var randomNum = getRandom(1, 100)
+    var randomNum = getRandom(1, 100);
     if (!bombNum.includes(randomNum)) {
         bombNum.push(randomNum);
     }
@@ -23,7 +23,7 @@ while (userNum.length < 100 - 16 && !bombNum.includes(insertNum)) {
         userNum.push(insertNum);
     } else {
         if (userNum.length==0) {
-            alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (non hai ancora selezionato nessun numero)")
+            alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (non hai ancora selezionato nessun numero)");
         } else {
             alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (finora hai selezionato i seguenti numeri: " + userNum + ")");
         }
@@ -48,9 +48,9 @@ function askNumBetween(x, y) {
 function victory() {
     document.getElementById("printer").classList.add("safe");
     document.getElementById("printer").innerHTML = "VITTORIA! Hai superato il campo minato indenne!";
-}
+};
 
 function boom() {
     document.getElementById("printer").classList.add("explode");
     document.getElementById("printer").innerHTML = "BOOM! Sei esploso dopo " + userNum.length + " tentativi";
-}
+};
