@@ -17,19 +17,24 @@ while (bombNum.length < 16) {
     }
 }
 
-while (userNum.length < 5) {
+while (userNum.length < 100 - 16 && !bombNum.includes(insertNum)) {
     var insertNum = askNumBetween(1, 100);
     if (!userNum.includes(insertNum) && !insertNum < 1 && insertNum <= 100) {
         userNum.push(insertNum);
     } else {
-        alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (finora hai selezionato i seguenti numeri: " + userNum + ")");
+        if (userNum.length==0) {
+            alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (non hai ancora selezionato nessun numero)")
+        } else {
+            alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (finora hai selezionato i seguenti numeri: " + userNum + ")");
+        }
     }
-
 }
 
-console.log(bombNum);
-console.log(userNum);
-
+if (userNum.lenght == 100 - 16) {
+    victory();
+} else {
+    boom();
+}
 
 // Funzioni
 function getRandom (x, y) {
@@ -39,3 +44,13 @@ function getRandom (x, y) {
 function askNumBetween(x, y) {
     return parseInt(prompt("Inserisci un numero da " + x  + " a " + y));
 };
+
+function victory() {
+    document.getElementById("printer").classList.add("safe");
+    document.getElementById("printer").innerHTML = "VITTORIA! Hai superato il campo minato indenne!";
+}
+
+function boom() {
+    document.getElementById("printer").classList.add("explode");
+    document.getElementById("printer").innerHTML = "BOOM! Sei esploso dopo " + userNum.length + " tentativi";
+}

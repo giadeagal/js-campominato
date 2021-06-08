@@ -5,3 +5,13 @@ body {
     text-align: center;
     font-family: 'Black Ops One', cursive;
 }
+
+.explode {
+    color: red;
+    text-shadow: 2px 2px yellow;
+}
+
+.safe {
+    color: springgreen;
+    text-shadow: 2px 2px black;
+}
