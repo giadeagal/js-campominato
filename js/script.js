@@ -17,13 +17,14 @@ while (bombNum.length < 16) {
     }
 }
 
-while (userNum.length < 100 - 16) {
+while (userNum.length < 5) {
     var insertNum = askNumBetween(1, 100);
-    if (!userNum.includes(insertNum)) {
+    if (!userNum.includes(insertNum) && !insertNum < 1 && insertNum <= 100) {
         userNum.push(insertNum);
-    } else if (bombNum.includes(insertNum)) {
-
+    } else {
+        alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (finora hai selezionato i seguenti numeri: " + userNum + ")");
     }
+
 }
 
 console.log(bombNum);
