@@ -7,7 +7,7 @@ document.getElementById("printer").innerHTML = "<h1>Campo Minato</h1>";
 // Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero. La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
-var bombNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+var bombNum = [];
 var userNum = [];
 
 while (bombNum.length < 16) {
@@ -21,7 +21,7 @@ while (userNum.length < 100 - 16) {
     var insertNum = parseInt(prompt("Inserisci un numero da 1 a 100"));
     if (!userNum.includes(insertNum)) {
         userNum.push(insertNum);
-    }
+    } else if ()
 }
 
 console.log(bombNum);
