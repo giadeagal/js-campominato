@@ -18,10 +18,12 @@ while (bombNum.length < 16) {
 }
 
 while (userNum.length < 100 - 16) {
-    var insertNum = parseInt(prompt("Inserisci un numero da 1 a 100"));
+    var insertNum = askNumBetween(1, 100);
     if (!userNum.includes(insertNum)) {
         userNum.push(insertNum);
-    } else if ()
+    } else if (bombNum.includes(insertNum)) {
+
+    }
 }
 
 console.log(bombNum);
@@ -30,5 +32,9 @@ console.log(userNum);
 
 // Funzioni
 function getRandom (x, y) {
-    return Math.floor(Math.random() * (y - x + 1) + x)
-}
+    return Math.floor(Math.random() * (y - x + 1) + x);
+};
+
+function askNumBetween(x, y) {
+    return parseInt(prompt("Inserisci un numero da " + x  + " a " + y));
+};
