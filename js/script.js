@@ -1,7 +1,5 @@
-// Testo
 document.getElementById("printer").innerHTML = "<h1>Campo Minato</h1>";
 
-// Input dati
 var bombNum = [];
 var userNum = [];
 var level;
@@ -10,7 +8,6 @@ do {
 }
 while (level < 0 || level > 2);
 
-// Elaborazione dati
 switch(level) {
     case "0":
       playGame(100);
@@ -23,7 +20,6 @@ switch(level) {
     break;
 }  
 
-// Funzioni
 function getBombs (x) {
     while (bombNum.length < 16) {
         var randomNum = getRandom(1, x);
@@ -43,7 +39,7 @@ function askNumBetween(x, y) {
 
 function playGame(x) {
 
-    getBombs(x)
+    getBombs(x);
     
     while (userNum.length < x - 16 && !bombNum.includes(insertNum)) {
         var insertNum = askNumBetween(1, x);
@@ -63,6 +59,6 @@ function playGame(x) {
         document.getElementById("printer").innerHTML = "VITTORIA! Hai superato il campo minato indenne!";
     } else {
         document.getElementById("printer").classList.add("explode");
-        document.getElementById("printer").innerHTML = "BOOM! Sei esploso dopo " + userNum.length + " tentativi";;
+        document.getElementById("printer").innerHTML = "BOOM! Sei esploso dopo " + userNum.length + " tentativi";
     }
 }
