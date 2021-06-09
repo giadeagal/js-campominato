@@ -6,7 +6,7 @@ var level;
 do {
     level = prompt("A quale livello vuoi giocare?\n\n" + "0: facile\n" + "1: medio\n" + "2: difficile");
 }
-while (level < 0 || level > 2);
+while (level < 0 || level > 2 || isNaN(level));
 
 switch(level) {
     case "0":
@@ -20,7 +20,7 @@ switch(level) {
     break;
 }  
 
-function getBombs (x) {
+function getBombs(x) {
     while (bombNum.length < 16) {
         var randomNum = getRandom(1, x);
         if (!bombNum.includes(randomNum)) {
@@ -38,9 +38,8 @@ function askNumBetween(x, y) {
 };
 
 function playGame(x) {
-
     getBombs(x);
-    
+
     while (userNum.length < x - 16 && !bombNum.includes(insertNum)) {
         var insertNum = askNumBetween(1, x);
         if (!userNum.includes(insertNum) && !insertNum < 1 && insertNum <= x) {
@@ -53,7 +52,7 @@ function playGame(x) {
             }
         }
     }
-    
+
     if (userNum.lenght == x - 16) {
         document.getElementById("printer").classList.add("safe");
         document.getElementById("printer").innerHTML = "VITTORIA! Hai superato il campo minato indenne!";
