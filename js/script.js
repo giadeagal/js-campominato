@@ -1,43 +1,39 @@
+// Testo
 document.getElementById("printer").innerHTML = "<h1>Campo Minato</h1>";
-// +++++ FATTO +++++
-// Il computer deve generare 16 numeri casuali tra 1 e 100. I numeri non possono essere duplicati.
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100. L’utente non può inserire più volte lo stesso numero.
 
-// +++++ DA FARE +++++
-// Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero. La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-
+// Input dati
 var bombNum = [];
 var userNum = [];
-
-while (bombNum.length < 16) {
-    var randomNum = getRandom(1, 100);
-    if (!bombNum.includes(randomNum)) {
-        bombNum.push(randomNum);
-    }
+var level;
+do {
+    level = prompt("A quale livello vuoi giocare?\n\n" + "0: facile\n" + "1: medio\n" + "2: difficile");
 }
+while (level < 0 || level > 2);
 
-while (userNum.length < 100 - 16 && !bombNum.includes(insertNum)) {
-    var insertNum = askNumBetween(1, 100);
-    if (!userNum.includes(insertNum) && !insertNum < 1 && insertNum <= 100) {
-        userNum.push(insertNum);
-    } else {
-        if (userNum.length==0) {
-            alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (non hai ancora selezionato nessun numero)");
-        } else {
-            alert("Inserisci un valore tra 1 e 100 diverso da quelli già selezionati (finora hai selezionato i seguenti numeri: " + userNum + ")");
+// Elaborazione dati
+switch(level) {
+    case "0":
+      playGame(100);
+      break;
+    case "1":
+      playGame(80);
+      break;
+    case "2":
+      playGame(60);
+    break;
+}  
+
+// Funzioni
+function getBombs (x) {
+    while (bombNum.length < 16) {
+        var randomNum = getRandom(1, x);
+        if (!bombNum.includes(randomNum)) {
+            bombNum.push(randomNum);
         }
     }
 }
 
-if (userNum.lenght == 100 - 16) {
-    victory();
-} else {
-    boom();
-}
-
-// Funzioni
-function getRandom (x, y) {
+function getRandom(x, y) {
     return Math.floor(Math.random() * (y - x + 1) + x);
 };
 
@@ -45,12 +41,28 @@ function askNumBetween(x, y) {
     return parseInt(prompt("Inserisci un numero da " + x  + " a " + y));
 };
 
-function victory() {
-    document.getElementById("printer").classList.add("safe");
-    document.getElementById("printer").innerHTML = "VITTORIA! Hai superato il campo minato indenne!";
-};
+function playGame(x) {
 
-function boom() {
-    document.getElementById("printer").classList.add("explode");
-    document.getElementById("printer").innerHTML = "BOOM! Sei esploso dopo " + userNum.length + " tentativi";
-};
+    getBombs(x)
+    
+    while (userNum.length < x - 16 && !bombNum.includes(insertNum)) {
+        var insertNum = askNumBetween(1, x);
+        if (!userNum.includes(insertNum) && !insertNum < 1 && insertNum <= x) {
+            userNum.push(insertNum);
+        } else {
+            if (userNum.length==0) {
+                alert("Inserisci un valore tra 1 e " + x + " diverso da quelli già selezionati (non hai ancora selezionato nessun numero)");
+            } else {
+                alert("Inserisci un valore tra 1 e " + x + " diverso da quelli già selezionati (finora hai selezionato i seguenti numeri: " + userNum + ")");
+            }
+        }
+    }
+    
+    if (userNum.lenght == x - 16) {
+        document.getElementById("printer").classList.add("safe");
+        document.getElementById("printer").innerHTML = "VITTORIA! Hai superato il campo minato indenne!";
+    } else {
+        document.getElementById("printer").classList.add("explode");
+        document.getElementById("printer").innerHTML = "BOOM! Sei esploso dopo " + userNum.length + " tentativi";;
+    }
+}
